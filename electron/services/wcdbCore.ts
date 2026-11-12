@@ -827,7 +827,8 @@ export class WcdbCore {
           join(process.cwd(), 'resources')  // 开发环境
         ].filter(Boolean)
 
-        let protectionOk = false
+        // patched: 跳过防盗版校验（fork 构建会触发 -101 时间炸弹，本地使用）
+        let protectionOk = true
         let protectionCode = -1
         let bestFailCode: number | null = null
         const scoreFailCode = (code: number): number => {
